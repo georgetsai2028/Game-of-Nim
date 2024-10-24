@@ -2,15 +2,22 @@
 #include <cmath>
 #include <string>
 #include <cctype>
-
+#include <ctime>
 using namespace std;
 
-
+void easy_mode()
+{
+    srand(time(0)); //randomly generates need number every time by seeding
+    int max = 21;
+    int min = 10;
+    int pile_of_stones = min + rand() % (max - min + 1);
+    cout << "The initial number of stones is: " << pile_of_stones << endl;
+}
 
 
 int main()
 {
-    char mode;
+    string mode = "";
     string e = "You have chosen the easy mode";
     string h = "You have chosen the hard mode";
     int count = 0;
@@ -23,26 +30,26 @@ int main()
     cout << " * The player who takes the last stone resulting in 0 stones left from the pile loses" << endl;
 
     cout << "Choose mode: " << endl;
-    cout << "Easy Mode (e) or Hard Mode (h): ";
+    cout << "Easy Mode (easy) or Hard Mode (hard): ";
     
     cin >> mode;
 
     while (count < 1)
     {
-        if (mode != 'e' || mode != 'h')
+        if (mode != "easy" || mode != "hard")
         {
-        cout << "Try again, enter (e) for easy more or (h) for hard mode" << endl;
+        cout << "Try again, enter (easy) for easy mode or (hard) for hard mode" << endl;
         cin >> mode;
         }
-        if (mode == 'e' || mode == 'h')
+        else if (mode == "easy" || mode == "hard")
         {
         count++;
         }
     }
 
-    if (mode == 'e')
+    if (mode == "easy")
     {
-        cout << "haha";
+        easy_mode();
     }
 
     
