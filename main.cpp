@@ -5,6 +5,12 @@
 #include <ctime>
 using namespace std;
 
+int get_valid_player_input(int pile_of_stones)
+{
+    int player = 0;
+    int correct = 0;
+
+}
 void easy_mode()
 {
     srand(time(0)); //randomly generates need number every time by seeding
@@ -59,6 +65,7 @@ void easy_mode()
             cout << "There are " << pile_of_stones << " left" << endl;
             cout << "Choose between 1, 2, or 3 stones to take: " << endl;
             cin >> player;
+            /*
             int correct = 0;
             while (correct < 1)
             {
@@ -72,6 +79,7 @@ void easy_mode()
                 correct++;
                 }
             }
+            */
             cout << "Player takes " << player << " stones" << endl;
             pile_of_stones = pile_of_stones - player;
             turn = turn + 100;
