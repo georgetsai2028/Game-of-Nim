@@ -9,7 +9,7 @@ void easy_mode()
 {
     srand(time(0)); //randomly generates need number every time by seeding
 
-    int turn =  0 + rand() % (100 - 0 + 1);
+    int turn =  0 + rand() % (100 - 0 + 1); // randomizes starting to ensure 50/50
     int player = 0;
     int computer = 0;
     int max = 21;
@@ -43,7 +43,7 @@ void easy_mode()
         }
         count++;
     }
-    while (pile_of_stones > 0)
+    while (pile_of_stones > 0) //automates the rest of game depending on who starts first
     {
         if (turn > 50)
         {
@@ -59,6 +59,19 @@ void easy_mode()
             cout << "There are " << pile_of_stones << " left" << endl;
             cout << "Choose between 1, 2, or 3 stones to take: " << endl;
             cin >> player;
+            int correct = 0;
+            while (correct < 1)
+            {
+                if (player <= 0 || player > 3 || player > pile_of_stones)
+                {
+                    cout << "Please only take 1, 2, or 3 stones at one time" << endl;
+                    cin >> player;
+                }
+                else if (player >= 0 || player < 3 || player <= pile_of_stones)
+                {
+                correct++;
+                }
+            }
             cout << "Player takes " << player << " stones" << endl;
             pile_of_stones = pile_of_stones - player;
             turn = turn + 100;
