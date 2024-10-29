@@ -46,6 +46,7 @@ void easy_mode()
             cout << "There are " << pile_of_stones << " left" << endl;
             cout << "Choose between 1, 2, or 3 stones to take: " << endl;
             cin >> player;
+            get_valid_player_input(pile_of_stones, player);
             cout << "Player takes " << player << " stones" << endl;
             pile_of_stones = pile_of_stones - player;
         }
@@ -76,21 +77,6 @@ void easy_mode()
             cout << "Choose between 1, 2, or 3 stones to take: " << endl;
             cin >> player;
             get_valid_player_input(pile_of_stones, player);
-            /*
-            int correct = 0;
-            while (correct < 1)
-            {
-                if (player <= 0 || player > 3 || player > pile_of_stones)
-                {
-                    cout << "Please only take 1, 2, or 3 stones at one time" << endl;
-                    cin >> player;
-                }
-                else if (player >= 0 || player < 3 || player <= pile_of_stones)
-                {
-                correct++;
-                }
-            }
-            */
             cout << "Player takes " << player << " stones" << endl;
             pile_of_stones = pile_of_stones - player;
             turn = turn + 100;
