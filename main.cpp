@@ -5,11 +5,22 @@
 #include <ctime>
 using namespace std;
 
-int get_valid_player_input(int pile_of_stones)
+void get_valid_player_input(int pile_of_stones, int player_input) //function to get correct player input
 {
-    int player = 0;
     int correct = 0;
 
+    while (correct < 1)
+    {
+        if (player_input <= 0 || player_input > 3 || player_input > pile_of_stones)
+        {
+            cout << "Please only take 1, 2, or 3 stones at one time. As long as there is enough in pile of stones" << endl;
+            cin >> player_input;
+        }
+        else if (player_input >= 0 || player_input < 3 || player_input <= pile_of_stones)
+        {
+            correct++;
+        }
+    }
 }
 void easy_mode()
 {
@@ -23,7 +34,6 @@ void easy_mode()
     int pile_of_stones = min + rand() % (max - min + 1);
     int count = 0;
 
-    string finish;
 
     cout << "The initial number of stones is: " << pile_of_stones << endl;
     cout << endl;
@@ -65,6 +75,7 @@ void easy_mode()
             cout << "There are " << pile_of_stones << " left" << endl;
             cout << "Choose between 1, 2, or 3 stones to take: " << endl;
             cin >> player;
+            get_valid_player_input(pile_of_stones, player);
             /*
             int correct = 0;
             while (correct < 1)
