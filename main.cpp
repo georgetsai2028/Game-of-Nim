@@ -34,8 +34,11 @@ void easy_mode()
     int pile_of_stones = min + rand() % (max - min + 1);
     int count = 0;
 
+    int initial_stones;
+    int last_turn;
 
     cout << "The initial number of stones is: " << pile_of_stones << endl;
+    initial_stones = pile_of_stones;
     cout << endl;
     while (count < 1)   
     {
@@ -68,7 +71,8 @@ void easy_mode()
             computer = 1 + rand() % (3 - 1 +1);
             pile_of_stones = pile_of_stones - computer;
             cout << "Computer takes " << computer << " stones" << endl;
-            turn = turn - 100;
+            turn = turn - 100; //ensures next turn is other player
+            last_turn = 1;
         }
 
         else if (turn <= 50)
@@ -80,10 +84,21 @@ void easy_mode()
             cout << "Player takes " << player << " stones" << endl;
             pile_of_stones = pile_of_stones - player;
             turn = turn + 100;
+            last_turn = 0;
+        }
+        if (pile_of_stones <= 0) //decides whether user wins or loses
+        {
+            if (last_turn == 0)
+            {
+                cout << "You LOSE :( " << endl;
+            }
+            else if (last_turn == 1)
+            {
+                cout << "You Win!!!" << endl;
+            }
         }
     }
-    cout << "There are no more stones" << endl;
-
+    
 }
 int main()
 {
