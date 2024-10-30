@@ -135,19 +135,65 @@ void hard_mode()
         {
             cout << "Computer starts first" << endl;
             cout << "There are " << pile_of_stones << " stones" << endl;
-            if (pile_of_stones % 4 - 1 == 0) // if pile_of_stones is a multiple of stones
+            if ((pile_of_stones % 4 ) - 1 <= 0) // if pile_of_stones is a multiple of 4 + 1. computer will take only one
             {
+                computer = 1;
                 pile_of_stones = pile_of_stones - 1;
             }
-            else if (pile_of_stones % 4 - 1 != 0)
+            else
             {
-            computer = pile_of_stones % 4 - 1;
-            cout << computer << endl;
-            pile_of_stones = pile_of_stones - computer;
+                computer = (pile_of_stones % 4) + 1;
+                cout << computer << endl;
+                pile_of_stones = pile_of_stones - computer;
             }
             cout << "Computer takes " << computer << " stones" << endl;
         }
         count++;
+    }
+     while (pile_of_stones > 0) //automates the rest of game depending on who starts first
+    {
+        if (turn > 50)
+        {
+            cout << "There are " << pile_of_stones << " stones left" << endl;
+            if ((pile_of_stones % 4) - 1 <= 0) // if pile_of_stones is a multiple of stones
+            {
+                computer = 1;
+                pile_of_stones = pile_of_stones - 1;
+            }
+            else
+            {
+                computer = (pile_of_stones % 4) + 1;
+                cout << computer << endl;
+                pile_of_stones = pile_of_stones - computer;
+            }
+            // computer = 1 + rand() % (3 - 1 +1);
+            cout << "Computer takes " << computer << " stones" << endl;
+            turn = turn - 100; //ensures next turn is other player
+            last_turn = 1;
+        }
+
+        else if (turn <= 50)
+        {
+            cout << "There are " << pile_of_stones << " left" << endl;
+            cout << "Choose between 1, 2, or 3 stones to take: " << endl;
+            cin >> player;
+            get_valid_player_input(pile_of_stones, player);
+            cout << "Player takes " << player << " stones" << endl;
+            pile_of_stones = pile_of_stones - player;
+            turn = turn + 100;
+            last_turn = 0;
+        }
+        if (pile_of_stones <= 0) //decides whether user wins or loses
+        {
+            if (last_turn == 0)
+            {
+                cout << "You LOSE :( " << endl;
+            }
+            else if (last_turn == 1)
+            {
+                cout << "You Win!!!" << endl;
+            }
+        }
     }
 }
 int main()
