@@ -100,6 +100,56 @@ void easy_mode()
     }
     
 }
+void hard_mode()
+{
+    srand(time(0)); //randomly generates need number every time by seeding
+
+    int turn =  0 + rand() % (100 - 0 + 1); // randomizes starting to ensure 50/50
+    int player = 0;
+    int computer = 0;
+    int max = 21;
+    int min = 10;
+    int pile_of_stones = min + rand() % (max - min + 1);
+    int count = 0;
+
+    int initial_stones;
+    int last_turn;
+
+    cout << "The initial number of stones is: " << pile_of_stones << endl;
+    initial_stones = pile_of_stones;
+    cout << endl;
+    while (count < 1)   
+    {
+
+        if (turn > 50)
+        {   
+            cout << "Player starts first" << endl;
+            cout << "There are " << pile_of_stones << " stones" << endl;
+            cout << "Choose between 1, 2, or 3 stones to take: " << endl;
+            cin >> player;
+            get_valid_player_input(pile_of_stones, player);
+            cout << "Player takes " << player << " stones" << endl;
+            pile_of_stones = pile_of_stones - player;
+        }
+        else if (turn <= 50)
+        {
+            cout << "Computer starts first" << endl;
+            cout << "There are " << pile_of_stones << " stones" << endl;
+            if (pile_of_stones % 4 - 1 == 0) // if pile_of_stones is a multiple of stones
+            {
+                pile_of_stones = pile_of_stones - 1;
+            }
+            else if (pile_of_stones % 4 - 1 != 0)
+            {
+            computer = pile_of_stones % 4 - 1;
+            cout << computer << endl;
+            pile_of_stones = pile_of_stones - computer;
+            }
+            cout << "Computer takes " << computer << " stones" << endl;
+        }
+        count++;
+    }
+}
 int main()
 {
     char mode;
@@ -145,6 +195,10 @@ int main()
     if (mode == 'e')
     {
         easy_mode();
+    }
+    else if(mode == 'h')
+    {
+        hard_mode();
     }
 
     
