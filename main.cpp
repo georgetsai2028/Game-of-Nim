@@ -135,14 +135,22 @@ void hard_mode()
         {
             cout << "Computer starts first" << endl;
             cout << "There are " << pile_of_stones << " stones" << endl;
-            if ((pile_of_stones % 4 ) - 1 <= 0) // if pile_of_stones is a multiple of 4 + 1. computer will take only one
+            if ((pile_of_stones % 4 ) == 1) // if pile_of_stones is a multiple of 4 + 1. computer will take only one
             {
                 computer = 1;
                 pile_of_stones = pile_of_stones - 1;
             }
-            else
+            else if (pile_of_stones % 4 != 1)
             {
-                computer = (pile_of_stones % 4) + 1;
+                computer = (pile_of_stones % 4) - 1;
+                if (computer < 1) 
+                {
+                    computer = 1; // Take 1 if calculation is 0 or negative
+                }
+                else if (computer > 3)
+                {
+                    computer = 3; // Take 3 if calculation exceeds 3
+                }
                 cout << computer << endl;
                 pile_of_stones = pile_of_stones - computer;
             }
@@ -155,14 +163,22 @@ void hard_mode()
         if (turn > 50)
         {
             cout << "There are " << pile_of_stones << " stones left" << endl;
-            if ((pile_of_stones % 4) - 1 <= 0) // if pile_of_stones is a multiple of stones
+            if ((pile_of_stones % 4) == 1) // if pile_of_stones is a multiple of stones
             {
                 computer = 1;
                 pile_of_stones = pile_of_stones - 1;
             }
-            else
+            else if ((pile_of_stones % 4) != 1)
             {
-                computer = (pile_of_stones % 4) + 1;
+                computer = (pile_of_stones % 4) - 1;
+                if (computer < 1) 
+                {
+                    computer = 1; 
+                }
+                else if (computer > 3)
+                {
+                    computer = 3; 
+                }
                 cout << computer << endl;
                 pile_of_stones = pile_of_stones - computer;
             }
@@ -242,7 +258,7 @@ int main()
     {
         easy_mode();
     }
-    else if(mode == 'h')
+    if(mode == 'h')
     {
         hard_mode();
     }
